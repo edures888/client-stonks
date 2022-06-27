@@ -1,5 +1,5 @@
 import axios from 'axios';
-import USStockSymbols from './data/USStocksFCS';
+import usStockSymbols from './data/usStocksFCS';
 import cryptoSymbols from './data/cryptoFCS';
 
 const serverURL = `${process.env.REACT_APP_SERVER_URL}/api/v1/assets/`;
@@ -12,9 +12,10 @@ const getOwnedAssets = () => {
 const addAsset = (assetData) => {
   return axios.post(serverURL, assetData);
 };
+
 const findStockSymbol = (keyword) => {
   const key = keyword.toLowerCase();
-  return USStockSymbols.filter(
+  const results = usStockSymbols.filter(
     function (stock) {
       if (
         this.count < 10 &&
@@ -27,11 +28,12 @@ const findStockSymbol = (keyword) => {
     },
     { count: 0 }
   );
+  return results.length > 0 ? results : null;
 };
 
 const findCryptoSymbol = (keyword) => {
   const key = keyword.toLowerCase();
-  return cryptoSymbols.filter(
+  const results = cryptoSymbols.filter(
     function (coin) {
       if (
         this.count < 10 &&
@@ -44,6 +46,7 @@ const findCryptoSymbol = (keyword) => {
     },
     { count: 0 }
   );
+  return results.length > 0 ? results : null;
 };
 
 // Not the best practice of using API key in URL, but it is free (temporary solution)
@@ -60,10 +63,10 @@ const searchCryptoAPI = (keyword) => {
 const trendingCrypto = () => axios.get('https://api.coingecko.com/api/v3/search/trending');
 
 export {
-  searchStockAPI,
-  searchCryptoAPI,
   findCryptoSymbol,
   findStockSymbol,
+  searchStockAPI,
+  searchCryptoAPI,
   trendingCrypto,
   getOwnedAssets,
   addAsset,

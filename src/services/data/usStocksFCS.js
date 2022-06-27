@@ -1,4 +1,4 @@
-const USStockSymbols = [
+const usStockSymbols = [
   {
     id: '1',
     name: 'Boeing',
@@ -65854,4 +65854,4 @@ const USStockSymbols = [
   }
 ];
 
-export default USStockSymbols;
+export default usStockSymbols;

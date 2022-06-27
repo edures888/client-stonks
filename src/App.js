@@ -7,9 +7,8 @@ import ErrorPage from './components/ErrorPage';
 import Profile from './components/Profile';
 import Loading from './components/Loading';
 import ProtectedRoute from './auth/ProtectedRoute';
-import AssetFinder from './components/investments/AssetFinder';
 import Portfolio from './components/investments/Portfolio';
-import SavingsWallet from './components/SavingsWallet';
+import SavingsWallet from './components/savingswallet/SavingsWallet';
 
 function App() {
   const { isLoading } = useAuth0();
@@ -25,7 +24,6 @@ function App() {
         <Route path="*" element={<ErrorPage status="404" message="Not Found" />} />
         <Route path="/dashboard" element={<ProtectedRoute component={Dashboard} />} />
         <Route path="/profile" element={<ProtectedRoute component={Profile} />} />
-        <Route path="/finder" element={<ProtectedRoute component={AssetFinder} />} />
         <Route path="/investments" element={<ProtectedRoute component={Portfolio} />} />
         <Route path="/savings" element={<ProtectedRoute component={SavingsWallet} />} />
       </Routes>
